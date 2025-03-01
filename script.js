@@ -34,6 +34,7 @@ function start() {
     wordMistakes.textContent = currentMistakes;
     insertWord(currentWord);
     document.addEventListener('keydown', keyPress);
+    checkGameEnd ();
 }
 
 function keyPress(event) {
@@ -61,24 +62,26 @@ function keyPress(event) {
             wrongCount.textContent = wrongWords;
         }
 
-        if (correctWords === 5) {
-            alert('Вы выиграли!');
-            reset();
-            return;
-        }
-
-        if (wrongWords === 5) {
-            alert('Вы проиграли:( Попробуйте еще раз!');
-            reset();
-            return;
-        }
-
-        start();
+        setTimeout(start, 500);
     }
 }
 
 start();
 startTimer()
+
+function checkGameEnd () {
+    if (correctWords === 5) {
+        alert('Вы выиграли!');
+        reset();
+        return;
+    }
+
+    if (wrongWords === 5) {
+        alert('Вы проиграли:( Попробуйте еще раз!');
+        reset();
+        return;
+    }
+}
 
 function reset() {
     correctWords = 0;
