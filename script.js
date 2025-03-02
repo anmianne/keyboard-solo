@@ -43,17 +43,16 @@ function keyPress(event) {
     const spans = wordContainer.querySelectorAll('span');
 
     if (pressedKey === expectedLetter) {
+        spans[currentLetterIndex].classList.remove('w')
         spans[currentLetterIndex].classList.add('c');
         currentLetterIndex++;
     } else {
         spans[currentLetterIndex].classList.add('w');
         currentMistakes++;
         wordMistakes.textContent = currentMistakes;
-        setTimeout(() => spans[currentLetterIndex].classList.remove('w'), 200);
     }
 
     if (currentLetterIndex === currentWord.length) {
-        spans.forEach((span) => span.classList.add('c'));
         if (currentMistakes === 0) {
             correctWords++;
             correctCount.textContent = correctWords;
@@ -62,7 +61,7 @@ function keyPress(event) {
             wrongCount.textContent = wrongWords;
         }
 
-        setTimeout(start, 500);
+        setTimeout(start, 0);
     }
 }
 
